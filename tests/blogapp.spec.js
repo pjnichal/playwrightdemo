@@ -6,6 +6,8 @@ let accessTokenUser1;
 let blogpostId;
 let accessTokenUser2;
 test.describe.serial("TESTING BLOGAPP", () => {
+  let blogpostUser1 = "";
+  let blogpostUser2 = "";
   test.describe.serial("Register and Login", () => {
     test("Test:Register user 1", async ({ request }) => {
       const response = await request.post(
@@ -63,7 +65,9 @@ test.describe.serial("TESTING BLOGAPP", () => {
       });
       const data = JSON.parse(await response.body());
       console.log(data.data.accessToken);
-      jwt.verify(data.data.accessToken, "RESTFULAPIs", (err, user) => {});
+      jwt.verify(data.data.accessToken, "RESTFULAPIs", (err, user) => {
+        blogpostUser1 = user._id;
+      });
       expect(response.status()).toBe(200);
       accessTokenUser1 = data.data.accessToken;
     });
@@ -78,7 +82,9 @@ test.describe.serial("TESTING BLOGAPP", () => {
       });
       const data = JSON.parse(await response.body());
       console.log(data.data.accessToken);
-      jwt.verify(data.data.accessToken, "RESTFULAPIs", (err, user) => {});
+      jwt.verify(data.data.accessToken, "RESTFULAPIs", (err, user) => {
+        blogpostUser2 = user._id;
+      });
       expect(response.status()).toBe(200);
       accessTokenUser2 = data.data.accessToken;
     });
@@ -200,45 +206,43 @@ test.describe.serial("TESTING BLOGAPP", () => {
   // });
 
   test.describe.serial("DELETE ALL TEST USERS", () => {
-    let blogpostUser1 = "";
-    let blogpostUser2 = "";
-    test("Test: Login with correct email and password for user 1", async ({
-      request,
-    }) => {
-      const response = await request.post("http://localhost:4000/auth/login", {
-        data: {
-          email: "demo1@gmail.com",
-          password: "1234",
-        },
-      });
-      const data = JSON.parse(await response.body());
-      console.log(data.data.accessToken);
-      jwt.verify(data.data.accessToken, "RESTFULAPIs", (err, user) => {
-        blogpostUser1 = user._id;
-        console.log(blogpostUser2);
-      });
-      expect(response.status()).toBe(200);
-      accessTokenUser1 = data.data.accessToken;
-    });
-    test("Test: Login with correct email and password for user 2", async ({
-      request,
-    }) => {
-      const response = await request.post("http://localhost:4000/auth/login", {
-        data: {
-          email: "demo2@gmail.com",
-          password: "1234",
-        },
-      });
-      const data = JSON.parse(await response.body());
-      console.log(data.data.accessToken);
-      jwt.verify(data.data.accessToken, "RESTFULAPIs", (err, user) => {
-        blogpostUser2 = user._id;
-        console.log(user._id);
-        console.log(blogpostUser2);
-      });
-      expect(response.status()).toBe(200);
-      accessTokenUser2 = data.data.accessToken;
-    });
+    // test("Test: Login with correct email and password for user 1", async ({
+    //   request,
+    // }) => {
+    //   const response = await request.post("http://localhost:4000/auth/login", {
+    //     data: {
+    //       email: "demo1@gmail.com",
+    //       password: "1234",
+    //     },
+    //   });
+    //   const data = JSON.parse(await response.body());
+    //   console.log(data.data.accessToken);
+    //   jwt.verify(data.data.accessToken, "RESTFULAPIs", (err, user) => {
+    //     blogpostUser1 = user._id;
+    //     console.log(blogpostUser2);
+    //   });
+    //   expect(response.status()).toBe(200);
+    //   accessTokenUser1 = data.data.accessToken;
+    // });
+    // test("Test: Login with correct email and password for user 2", async ({
+    //   request,
+    // }) => {
+    //   const response = await request.post("http://localhost:4000/auth/login", {
+    //     data: {
+    //       email: "demo2@gmail.com",
+    //       password: "1234",
+    //     },
+    //   });
+    //   const data = JSON.parse(await response.body());
+    //   console.log(data.data.accessToken);
+    //   jwt.verify(data.data.accessToken, "RESTFULAPIs", (err, user) => {
+    //     blogpostUser2 = user._id;
+    //     console.log(user._id);
+    //     console.log(blogpostUser2);
+    //   });
+    //   expect(response.status()).toBe(200);
+    //   accessTokenUser2 = data.data.accessToken;
+    // });
     test("Delete test user 1", async ({ request }) => {
       console.log(blogpostUser1);
       const response = await request.delete(
