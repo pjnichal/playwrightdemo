@@ -14,7 +14,7 @@ test.describe.serial("TESTING BLOGAPP", () => {
       data: {
         email: "demo1@gmail.com",
         password: "1234",
-        name: "demo",
+        name: "demo user1",
       },
     });
 
@@ -25,7 +25,7 @@ test.describe.serial("TESTING BLOGAPP", () => {
       data: {
         email: "demo2@gmail.com",
         password: "1234",
-        name: "demo",
+        name: "demo user2",
       },
     });
     // expect(response.body.code).toBe("AUTHR");
@@ -37,7 +37,7 @@ test.describe.serial("TESTING BLOGAPP", () => {
       data: {
         email: "demo1@gmail.com",
         password: "1234",
-        name: "Pravin",
+        name: "Pravin Nichal",
       },
     });
     // expect(response.body.code).toBe("UAE");
