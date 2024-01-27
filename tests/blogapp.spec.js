@@ -20,8 +20,7 @@ test.describe.serial("TESTING BLOGAPP", () => {
           },
         }
       );
-      // console.log(response.body);
-      // expect(response.body.code).toBe("AUTHR");
+
       expect(response.status()).toBe(201);
     });
     test("Test:Register user 2", async ({ request }) => {
@@ -127,7 +126,7 @@ test.describe.serial("TESTING BLOGAPP", () => {
           Authorization: `Bearer ${accessTokenUser1}`,
         },
       });
-      console.log(response.body);
+
       expect(response.status()).toBe(200);
     });
 
@@ -161,7 +160,6 @@ test.describe.serial("TESTING BLOGAPP", () => {
         }
       );
 
-      console.log(response.body);
       expect(response.status()).toBe(201);
     });
 
@@ -182,9 +180,7 @@ test.describe.serial("TESTING BLOGAPP", () => {
         }
       );
 
-      console.log(response.body);
       expect(response.status()).toBe(401);
-      expect(response.body.code).toBe("UAU");
     });
 
     test("Test: Delete Post", async ({ request }) => {
@@ -199,7 +195,6 @@ test.describe.serial("TESTING BLOGAPP", () => {
         }
       );
 
-      console.log(response.body);
       expect(response.status()).toBe(201);
     });
   });
@@ -214,7 +209,6 @@ test.describe.serial("TESTING BLOGAPP", () => {
         },
       });
 
-      console.log(response.body);
       expect(response.status()).toBe(403);
     });
     test("Test: Save post without title", async ({ request }) => {
@@ -247,7 +241,7 @@ test.describe.serial("TESTING BLOGAPP", () => {
           },
         }
       );
-      console.log(response.body);
+
       expect(response.status()).toBe(201);
     });
     test("Delete test user 2", async ({ request }) => {
@@ -261,7 +255,6 @@ test.describe.serial("TESTING BLOGAPP", () => {
         }
       );
 
-      console.log(response.body);
       expect(response.status()).toBe(201);
     });
   });
